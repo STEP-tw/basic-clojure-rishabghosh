@@ -25,3 +25,21 @@
     (is (= nil (harishchandra nil))))
   (testing "falsy value (false)"
     (is (= nil (harishchandra false)))))
+
+(deftest yudishtira-truthy-value
+  (testing "truthy value (2)"
+    (is (= 2 (yudishtira 2))))
+  (testing "truthy value ([])"
+    (is (= [] (yudishtira []))))
+  (testing "truthy value (\"\")"
+    (is (= "" (yudishtira ""))))
+  (testing "falsy value (nil)"
+    (is (= :ashwathama (yudishtira nil))))
+  (testing "falsy value (false)"
+    (is (= :ashwathama (yudishtira false)))))
+
+(deftest duplicate-first-test
+  (testing "non empty coll"
+    (is (= [1 1 2 3 4 5] (duplicate-first [1 2 3 4 5]))))
+  (testing "empty coll"
+    (is (= nil (duplicate-first [])))))

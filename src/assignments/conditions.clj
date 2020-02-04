@@ -25,7 +25,7 @@
   Falsy values(false and nil) return nil"
   {:level        :easy
    :use          '[when-let]
-   :implemented? false}
+   :implemented? true}
   [x]
   (when-let [only-truthy x] only-truthy)
   )
@@ -35,8 +35,12 @@
   Falsy values(false and nil) return :ashwathama"
   {:level        :easy
    :use          '[if-let]
-   :implemented? false}
-  [x])
+   :implemented? true}
+  [x]
+  (if-let [only-truthy x]
+    only-truthy
+    :ashwathama
+    ))
 
 (defn duplicate-first
   "Returns coll with the first element duplicated.
@@ -45,7 +49,9 @@
    :use          '[when-first concat]
    :alternates   '[empty? seq? conj into]
    :implemented? false}
-  [coll])
+  [coll]
+  (when-first [first-element coll] (concat [first-element] coll ))
+  )
 
 (defn five-point-someone
   "Returns :chetan-bhagat if y is 5.
