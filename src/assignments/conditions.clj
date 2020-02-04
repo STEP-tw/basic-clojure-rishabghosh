@@ -50,7 +50,7 @@
    :alternates   '[empty? seq? conj into]
    :implemented? false}
   [coll]
-  (when-first [first-element coll] (concat [first-element] coll ))
+  (when-first [first-element coll] (concat [first-element] coll))
   )
 
 (defn five-point-someone
@@ -61,7 +61,13 @@
   {:level        :easy
    :use          '[cond]
    :implemented? false}
-  [x y])
+  [x y]
+  (cond
+    (= y 5) :chetan-bhagat
+    (= x 5) :satan-bhagat
+    (> x y) :greece
+    :else :universe)
+  )
 
 (defn conditions-apply
   "Given a collection of any length, returns:
