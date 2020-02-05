@@ -102,7 +102,7 @@
   (repeat-and-truncate (range 4) true true 6) => '(0 1 2 3 0 1)"
   {:level        :medium
    :use          '[cond->> concat take]
-   :implemented? false}
+   :implemented? true}
   [coll rep? truncate? n]
 
   (cond->> coll
@@ -118,8 +118,14 @@
   (order-in-words 2 3 4) => [:z-greater-than-x]"
   {:level        :easy
    :use          '[cond-> conj]
-   :implemented? false}
-  [x y z])
+   :implemented? true}
+  [x y z]
+
+  (cond-> []
+          (> x y) (conj :x-greater-than-y)
+          (> y z) (conj :y-greater-than-z)
+          (> z x) (conj :z-greater-than-x)
+          ))
 
 (defn zero-aliases
   "Given a zero-like value(0,[],(),#{},{}) should
