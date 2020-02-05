@@ -8,7 +8,19 @@
    :use          '[loop recur]
    :dont-use     '[map]
    :implemented? false}
-  [f & colls])
+  [f & colls]
+
+  ;(println "printing colls   " colls)
+  (loop [current-list (first colls)
+         result []]
+    ;use when let
+    (let [current-element (first current-list)                             ;
+          rest-of (rest current-list)]
+      (if (empty? current-list)
+        result
+        (recur rest-of (conj result (f current-element)))
+        ))))
+
 
 (defn filter'
   "Implement a non-lazy version of filter that accepts a
