@@ -48,7 +48,7 @@
   {:level        :easy
    :use          '[when-first concat]
    :alternates   '[empty? seq? conj into]
-   :implemented? false}
+   :implemented? true}
   [coll]
   (when-first [first-element coll] (concat [first-element] coll))
   )
@@ -60,7 +60,7 @@
   Otherwise it returns :universe"
   {:level        :easy
    :use          '[cond]
-   :implemented? false}
+   :implemented? true}
   [x y]
   (cond
     (= y 5) :chetan-bhagat
@@ -82,7 +82,7 @@
   {:level        :medium
    :use          '[condp filter]
    :alternates   '[if cond]
-   :implemented? false}
+   :implemented? true}
   [coll]
 
   (condp includes-in-order? coll
@@ -92,6 +92,9 @@
     :tuntun
     ))
 
+(defn replicate-and-flatten [n collection]
+  (flatten (replicate n collection)))
+
 (defn repeat-and-truncate
   "Given coll and options to repeat and truncate
   returns a collection that optionally repeats itself
@@ -100,7 +103,12 @@
   {:level        :medium
    :use          '[cond->> concat take]
    :implemented? false}
-  [coll rep? truncate? n])
+  [coll rep? truncate? n]
+
+  (cond->> coll
+           rep? (replicate-and-flatten n)
+           truncate? (take n)
+           ))
 
 (defn order-in-words
   "Given x, y and z, returns a vector consisting of
