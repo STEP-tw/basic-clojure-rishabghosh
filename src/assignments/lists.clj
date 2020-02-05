@@ -1,5 +1,45 @@
 (ns assignments.lists)
 
+(defn simple-map [mapper-fn, collection]
+  (loop [collection collection
+         result []]
+    (let [current-element (first collection)                ;
+          rest-of (rest collection)]
+      (if (empty? collection)
+        result
+        (recur rest-of (conj result (mapper-fn current-element)))
+        )))
+  )
+
+(defn find-least-length [collections]
+  (apply min
+         (simple-map count collections))
+  )
+
+(defn remove-first-from-collections [collections]
+  (simple-map rest collections)
+  )
+
+(defn first-of-collections [collections]
+  (simple-map first collections))
+
+(defn crazy-map [mapper-fn collections]
+  (let [max-index (find-least-length collections)]
+    (loop [index 0
+           collections collections
+           result '()]
+      (if (>= index max-index)
+        result
+        (let [firsts (first-of-collections collections)
+              curr-result (reduce mapper-fn firsts)]
+          (recur
+            (inc index)
+            (remove-first-from-collections collections)
+            (concat result [curr-result])))
+        )
+      ))
+  )
+
 (defn map'
   "Implement a non-lazy version of map that accepts a
   mapper function and several collections. The output
@@ -7,19 +47,13 @@
   {:level        :medium
    :use          '[loop recur]
    :dont-use     '[map]
-   :implemented? false}
-  [f & colls]
+   :implemented? true}
+  [mapper-fn & colls]
 
-  ;(println "printing colls   " colls)
-  (loop [current-list (first colls)
-         result []]
-    ;use when let
-    (let [current-element (first current-list)                             ;
-          rest-of (rest current-list)]
-      (if (empty? current-list)
-        result
-        (recur rest-of (conj result (f current-element)))
-        ))))
+  (if (> (count colls) 1)
+    (crazy-map mapper-fn colls)
+    (simple-map mapper-fn (first colls)))
+  )
 
 
 (defn filter'
