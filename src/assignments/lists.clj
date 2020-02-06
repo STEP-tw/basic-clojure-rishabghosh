@@ -115,7 +115,13 @@
    :use          '[loop recur]
    :dont-use     '[count]
    :implemented? false}
-  ([coll]))
+  [coll]
+  (loop [collection coll
+         result 0]
+    (if (empty? collection)
+      result
+      (recur (rest collection) (inc result))))
+  )
 
 (defn reverse'
   "Implement your own version of reverse that reverses a coll.
