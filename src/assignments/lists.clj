@@ -63,7 +63,7 @@
   {:level        :easy
    :use          '[loop recur]
    :dont-use     '[filter]
-   :implemented? false}
+   :implemented? true}
   [pred coll]
   (loop [collection coll
          result []]
@@ -78,6 +78,18 @@
         )))
   )
 
+
+(defn simple-reduce [reducer-fn acc coll]
+  (loop [collection coll
+         acc acc]
+    (if (empty? collection)
+      acc
+      (recur
+        (rest collection)
+        (reducer-fn acc (first collection))
+        )))
+  )
+
 (defn reduce'
   "Implement your own multi-arity version of reduce
   that accepts a predicate function and a collection.
@@ -85,9 +97,16 @@
   {:level        :medium
    :use          '[loop recur]
    :dont-use     '[reduce]
-   :implemented? false}
-  ([f coll])
-  ([f init coll]))
+   :implemented? true}
+
+  ([reducer-fn coll]
+   (simple-reduce reducer-fn (first coll) (rest coll))
+   )
+
+  ([reducer-fn init coll]
+   (simple-reduce reducer-fn init coll)
+   )
+  )
 
 (defn count'
   "Implement your own version of count that counts the
