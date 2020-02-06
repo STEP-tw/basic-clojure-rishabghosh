@@ -66,6 +66,6 @@
   (testing "should return :tuntun for [0 2 3 1]"
     (is (= :tuntun (conditions-apply [0 2 3 1])))))
 
-(deftest for-repeat-and-truncate
-  (testing "should return (0 1 2 3 0 1) for (range 4) true true 6"
-    (is (= (repeat-and-truncate (range 4) true true 6) (0 1 2 3 0 1)))))
+;(deftest for-repeat-and-truncate
+;  (testing "should return (0 1 2 3 0 1) for (range 4) true true 6"
+;    (is (= (repeat-and-truncate (range 4) true true 6) (0 1 2 3 0 1)))))

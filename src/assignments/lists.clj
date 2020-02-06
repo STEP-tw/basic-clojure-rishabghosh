@@ -64,7 +64,19 @@
    :use          '[loop recur]
    :dont-use     '[filter]
    :implemented? false}
-  [pred coll])
+  [pred coll]
+  (loop [collection coll
+         result []]
+    (let [current-element (first collection)                ;
+          rest-of (rest collection)]
+      (if (empty? collection)
+        (sequence result)
+        (if-let [r (pred current-element)]
+          (recur rest-of (conj result current-element))
+          (recur rest-of result)
+          )
+        )))
+  )
 
 (defn reduce'
   "Implement your own multi-arity version of reduce
