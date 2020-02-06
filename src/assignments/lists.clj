@@ -6,7 +6,7 @@
     (let [current-element (first collection)                ;
           rest-of (rest collection)]
       (if (empty? collection)
-        result
+        (sequence result)
         (recur rest-of (conj result (mapper-fn current-element)))
         )))
   )
@@ -29,13 +29,13 @@
            collections collections
            result '()]
       (if (>= index max-index)
-        result
+        (sequence result)
         (let [firsts (first-of-collections collections)
               curr-result (reduce mapper-fn firsts)]
           (recur
             (inc index)
             (remove-first-from-collections collections)
-            (concat result [curr-result])))
+            (conj result curr-result)))
         )
       ))
   )
