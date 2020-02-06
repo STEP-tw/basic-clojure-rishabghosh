@@ -143,7 +143,16 @@
    :use          '[loop recur and]
    :dont-use     '[every?]
    :implemented? false}
-  ([pred coll]))
+  [pred coll]
+  (loop [collection coll]
+    (if (empty? collection)
+      true
+      (if-not (pred (first collection))
+        false
+        (recur (rest collection))
+        )
+      ))
+  )
 
 (defn some?'
   "Implement your own version of some that checks if at least one

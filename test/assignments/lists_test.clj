@@ -46,3 +46,11 @@
     (is (= '(\e \r \u \j \o \l \c) (reverse' "clojure"))))
   (testing "with non-seqable"
     (is (nil? (reverse' true)))))
+
+(deftest every?-test
+  (testing "with empty list"
+    (is (true? (every?' odd? []))))
+  (testing "odd? with odd value"
+    (is (true? (every?' odd? [1 3 5]))))
+  (testing "odd? with one even value in list"
+    (is (false? (every?' odd? [1 2 3])))))
