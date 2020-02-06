@@ -142,7 +142,7 @@
   {:level        :easy
    :use          '[loop recur and]
    :dont-use     '[every?]
-   :implemented? false}
+   :implemented? true}
   [pred coll]
   (loop [collection coll]
     (if (empty? collection)
@@ -162,7 +162,7 @@
   {:level        :easy
    :use          '[loop recur or]
    :dont-use     '[some]
-   :implemented? false}
+   :implemented? true}
   [pred coll]
   (when-not (empty? coll)
     (loop [collection coll]
@@ -181,7 +181,10 @@
    :use          '[partition every? partial apply <=]
    :dont-use     '[loop recur]
    :implemented? false}
-  [coll])
+  [coll]
+  (let [new-collection (sort coll)]
+    (= coll new-collection)
+    ))
 
 (defn distinct'
   "Implement your own lazy sequence version of distinct which returns
