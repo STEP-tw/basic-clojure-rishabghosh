@@ -54,3 +54,13 @@
     (is (true? (every?' odd? [1 3 5]))))
   (testing "odd? with one even value in list"
     (is (false? (every?' odd? [1 2 3])))))
+
+(deftest some?-test
+  (testing "with empty list"
+    (is (nil? (some?' odd? []))))
+  (testing "odd? with odd value"
+    (is (true? (some?' odd? [1 3 5]))))
+  (testing "odd? with one even value in list"
+    (is (true? (some?' odd? [1 2 3]))))
+  (testing "even? with no even values in list"
+    (is (false? (some?' even? [1 3 5])))))

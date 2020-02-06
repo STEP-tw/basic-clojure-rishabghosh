@@ -163,7 +163,17 @@
    :use          '[loop recur or]
    :dont-use     '[some]
    :implemented? false}
-  ([pred coll]))
+  [pred coll]
+  (when-not (empty? coll)
+    (loop [collection coll]
+      (if (empty? collection)
+        false
+        (if (pred (first collection))
+          true
+          (recur (rest collection)))
+        )
+      ))
+  )
 
 (defn ascending?
   "Verify if every element is greater than or equal to its predecessor"
