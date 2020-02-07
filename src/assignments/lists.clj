@@ -186,15 +186,23 @@
     (= coll new-collection)
     ))
 
-(defn distinct'
-  "Implement your own lazy sequence version of distinct which returns
-  a collection with duplicates eliminated. Might have to implement another
-  function, or use a letfn"
-  {:level        :medium
-   :use          '[lazy-seq set conj let :optionally letfn]
-   :dont-use     '[loop recur distinct]
-   :implemented? false}
-  [coll])
+(defn unique? [element]
+  (not (#{1 2 3 4} element)))
+
+;(defn distinct'
+;  "Implement your own lazy sequence version of distinct which returns
+;  a collection with duplicates eliminated. Might have to implement another
+;  function, or use a letfn"
+;  {:level        :medium
+;   :use          '[lazy-seq set conj let :optionally letfn]
+;   :dont-use     '[loop recur distinct]
+;   :implemented? false}
+;  [coll]
+;
+;  (let [coll-set (set coll)]
+;    (lazy-seq coll-set)
+;    )
+;  )
 
 (defn dedupe'
   "Implement your own lazy sequence version of dedupe which returns
@@ -206,6 +214,12 @@
    :implemented? false}
   [coll])
 
+(defn get-or-default [result default]
+  (if (nil? result)
+    default
+    result
+    ))
+
 (defn sum-of-adjacent-digits
   "Given a collection, returns a map of the sum of adjacent digits.
   [a b c] => [a+b b+c]"
@@ -213,7 +227,9 @@
    :use          '[map + rest]
    :dont-use     '[loop recur partition]
    :implemented? false}
-  [coll])
+  [coll]
+  (map + coll (rest coll))
+  )
 
 (defn max-three-digit-sequence
   "Given a collection of numbers, find a three digit sequence that

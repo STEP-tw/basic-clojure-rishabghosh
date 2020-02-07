@@ -71,3 +71,19 @@
   (testing "with wrong sequence"
     (is (false? (ascending? [1 4 3])))))
 
+;(deftest distinct'-test
+;  (testing "should return distinct elements"
+;    (is (= [1 2 3 4 5] (take 5 (distinct' [1 1 2 2 3 4 4 5])))))
+;  (testing "should return distinct names"
+;    (is (= ["john" "lenon"] (take 2 (distinct' ["john" "john" "lenon"]))))))
+
+
+;(deftest dedupe'-test
+;  (testing "should return consecutive distinct elements"
+;    (is (= [1 2 3 4 5 1] (take 6 (dedupe' [1 1 2 2 3 4 4 5 1]))))
+;    ))
+
+(deftest sum-of-adjacent-digits-test
+  (testing "should return (6 8 10 15) for (2 4 4 6 9)"
+    (is (= '(6 8 10 15) (sum-of-adjacent-digits [2 4 4 6 9])))
+    ))
