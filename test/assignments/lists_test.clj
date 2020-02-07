@@ -87,3 +87,10 @@
   (testing "should return (6 8 10 15) for (2 4 4 6 9)"
     (is (= '(6 8 10 15) (sum-of-adjacent-digits [2 4 4 6 9])))
     ))
+
+(deftest max-three-digit-sequence-test
+  (testing "should return [3 4 5]"
+    (is (= [3 4 5] (max-three-digit-sequence [1 2 3 4 5]))))
+  (testing "max 3 digit sequence"
+    (is (= [2 -1 2] (max-three-digit-sequence [1 2 -1 2 0])))))
+

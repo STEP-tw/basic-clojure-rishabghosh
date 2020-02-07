@@ -231,6 +231,10 @@
   (map + coll (rest coll))
   )
 
+(defn sum-of-adjacent-3-digits [coll]
+  (map + coll (rest coll) (rest (rest coll)))
+  )
+
 (defn max-three-digit-sequence
   "Given a collection of numbers, find a three digit sequence that
   yields the max sum. If the collection has fewer than 3 elements,
@@ -240,7 +244,13 @@
    :use          '[map next nnext max-key partial apply + if ->>]
    :dont-use     '[loop recur partition]
    :implemented? false}
-  [coll])
+  [coll]
+  (let [sum-of-adjacents (sum-of-adjacent-3-digits coll)]
+    (let [first-index-in-seq (.indexOf sum-of-adjacents (apply max sum-of-adjacents))]
+      (subvec coll first-index-in-seq (+ 3 first-index-in-seq))
+      )
+    )
+  )
 
 ;; transpose is a def. Not a defn.
 (def
