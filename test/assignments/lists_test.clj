@@ -94,3 +94,9 @@
   (testing "max 3 digit sequence"
     (is (= [2 -1 2] (max-three-digit-sequence [1 2 -1 2 0])))))
 
+(deftest difference-test
+  (testing "get intersection"
+    (is (= [4 5] (difference [1 2 3] [1 2 3 4 5]))))
+  (testing "should return [9]"
+    (is (= [9] (difference [1 3 5 7] [1 3 5 7 9]))))
+  )
