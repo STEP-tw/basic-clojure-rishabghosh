@@ -180,7 +180,7 @@
   {:level        :easy
    :use          '[partition every? partial apply <=]
    :dont-use     '[loop recur]
-   :implemented? false}
+   :implemented? true}
   [coll]
   (let [new-collection (sort coll)]
     (= coll new-collection)
@@ -226,7 +226,7 @@
   {:level        :medium
    :use          '[map + rest]
    :dont-use     '[loop recur partition]
-   :implemented? false}
+   :implemented? true}
   [coll]
   (map + coll (rest coll))
   )
@@ -248,7 +248,7 @@
   {:level        :medium
    :use          '[map next nnext max-key partial apply + if ->>]
    :dont-use     '[loop recur partition]
-   :implemented? false}
+   :implemented? true}
   [coll]
   (->> coll
        (sum-of-adjacent-3-digits)
